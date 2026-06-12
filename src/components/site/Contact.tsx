@@ -11,14 +11,39 @@ export function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Message from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    );
-    window.location.href = `mailto:patrik.zavadil@email.cz?subject=${subject}&body=${body}`;
+    setStatus("submitting");
+    setErrorMessage("");
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "068120b1-f892-4e22-9f0a-b7c42c5a1650");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        setStatus("error");
+        setErrorMessage(data.message || "Něco se pokazilo.");
+      }
+    } catch (error: any) {
+      console.error("Web3Forms API Error:", error);
+      setStatus("error");
+      setErrorMessage("E-mail se nepodařilo odeslat. Zkontroluj připojení k internetu.");
+    }
   }
 
   return (
@@ -42,39 +67,53 @@ export function Contact() {
           <div className="grid gap-4 md:grid-cols-2">
             <input
               type="text"
+              name="name"
               required
               maxLength={100}
               placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border-b border-border/60 bg-transparent px-1 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none"
+              disabled={status === "submitting"}
+              className="w-full border-b border-border/60 bg-transparent px-1 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none disabled:opacity-50"
             />
             <input
               type="email"
+              name="email"
               required
               maxLength={255}
               placeholder="Your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border-b border-border/60 bg-transparent px-1 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none"
+              disabled={status === "submitting"}
+              className="w-full border-b border-border/60 bg-transparent px-1 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none disabled:opacity-50"
             />
           </div>
           <textarea
+            name="message"
             required
             maxLength={2000}
             rows={4}
             placeholder="Your message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full resize-none border-b border-border/60 bg-transparent px-1 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none"
+            disabled={status === "submitting"}
+            className="w-full resize-none border-b border-border/60 bg-transparent px-1 py-3 text-sm placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none disabled:opacity-50"
           />
           <div className="flex flex-col items-center gap-3 pt-4">
             <button
               type="submit"
-              className="border border-primary px-10 py-3 text-[11px] uppercase tracking-[0.4em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+              disabled={status === "submitting"}
+              className="border border-primary px-10 py-3 text-[11px] uppercase tracking-[0.4em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-primary"
             >
-              Send Message
+              {status === "submitting" ? "Sending..." : "Send Message"}
             </button>
+            
+            {status === "success" && (
+              <p className="text-sm text-green-500 mt-2">Zpráva byla úspěšně odeslána!</p>
+            )}
+            {status === "error" && (
+              <p className="text-sm text-red-500 mt-2">Chyba: {errorMessage}</p>
+            )}
           </div>
         </form>
 

@@ -36,10 +36,24 @@ const projects = [
     href: "https://bucket-list-app-i6e6.onrender.com/",
   },
   {
+    name: "Red Bull Blog",
+    year: "2026",
+    desc: "First time building a WordPress site from scratch using Elementor for layout editing. Partially optimized.",
+    href: "https://i23zavapa.turney.cz",
+    readmeHref: "https://patrikzav.github.io/Red-Bull-Blog/",
+  },
+  {
     name: "Blogic Bazar",
     year: "2026",
     desc: "Internship project for Business Logic — an internal marketplace built with React, Next.js and TypeScript on a local SQLite database, using various libraries and APIs. Link goes to the GitHub README with screenshots and setup instructions.",
     href: "https://patrikzav.github.io/blum-bazar/",
+    readmeHref: "https://patrikzav.github.io/blum-bazar/",
+  },
+  {
+    name: "Zavadil Motorsport",
+    year: "2026",
+    desc: "Solo school project — a premium car rental app featuring interactive 3D models (Three.js) and a custom reservation modal. Built for PC only. Backend: Node.js, Express.js, Mongoose. Frontend: EJS, HTML, CSS, Vanilla JS. Database: MongoDB Atlas.",
+    href: "https://zavadil-motorsport.onrender.com",
   },
 ];
 
@@ -58,28 +72,36 @@ export function Projects() {
 
         <ul className="divide-y divide-border/40 border-y border-border/40">
           {projects.map((p, i) => (
-            <li key={p.name}>
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group grid grid-cols-[auto_1fr_auto] items-center gap-6 py-8 transition-colors md:gap-12 md:py-10"
-              >
-                <span className="font-display text-xl text-muted-foreground md:text-2xl">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-3xl text-foreground transition-colors group-hover:text-primary md:text-4xl">
+            <li key={p.name} className="group relative grid grid-cols-[auto_1fr_auto] items-center gap-6 py-8 transition-colors md:gap-12 md:py-10">
+              <span className="font-display text-xl text-muted-foreground md:text-2xl pointer-events-none">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-3xl text-foreground transition-colors group-hover:text-primary md:text-4xl">
+                  <a href={p.href} target="_blank" rel="noreferrer" className="before:absolute before:inset-0 before:z-0 outline-none">
                     {p.name}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                    {p.desc}
-                  </p>
-                </div>
-                <span className="hidden text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+                  </a>
+                </h3>
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base relative pointer-events-none">
+                  {p.desc}
+                </p>
+              </div>
+              <div className="relative z-10 flex items-center gap-4">
+                {p.readmeHref && (
+                  <a
+                    href={p.readmeHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground transition-colors hover:text-primary p-2"
+                    title="Read.me / Documentation"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+                  </a>
+                )}
+                <span className="hidden text-[11px] uppercase tracking-[0.3em] text-muted-foreground md:block pointer-events-none">
                   {p.year} ↗
                 </span>
-              </a>
+              </div>
             </li>
           ))}
         </ul>

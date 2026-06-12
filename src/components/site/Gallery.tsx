@@ -5,6 +5,8 @@ import secondPage from "@/assets/second-page.png";
 import budgetApp from "@/assets/budget-app.png";
 import bucketList from "@/assets/bucket-list.png";
 import blogicBazar from "@/assets/blogic-bazar.png";
+import zavadilMotorsport from "@/assets/zavadil-motorsport.png";
+import redBullBlog from "@/assets/red-bull-blog.png";
 
 const items = [
   { name: "YouTube — Pazaxcz", img: youtubeThumb, href: "https://www.youtube.com/@Pazaxcz" },
@@ -13,7 +15,9 @@ const items = [
   { name: "Second Personal Website", img: secondPage, href: "https://patrikzav.github.io/PatrikZav/" },
   { name: "Budget App", img: budgetApp, href: "https://patrikzav.github.io/PatrikZav/BudgetApp/index.html" },
   { name: "Bucket List App", img: bucketList, href: "https://bucket-list-app-i6e6.onrender.com/" },
+  { name: "Red Bull Blog", img: redBullBlog, href: "https://i23zavapa.turney.cz" },
   { name: "Blogic Bazar", img: blogicBazar, href: "https://patrikzav.github.io/blum-bazar/" },
+  { name: "Zavadil Motorsport", img: zavadilMotorsport, href: "https://zavadil-motorsport.onrender.com" },
 ];
 
 export function Gallery() {
