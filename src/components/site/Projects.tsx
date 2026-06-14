@@ -52,7 +52,7 @@ const projects = [
   {
     name: "Zavadil Motorsport",
     year: "2026",
-    desc: "Solo school project — a premium car rental app featuring interactive 3D models (Three.js) and a custom reservation modal. Built for PC only. Backend: Node.js, Express.js, Mongoose. Frontend: EJS, HTML, CSS, Vanilla JS. Database: MongoDB Atlas.",
+    desc: "Solo school project — a premium car rental app featuring interactive 3D models (Three.js) and a custom reservation modal. Backend: Node.js, Express.js, Mongoose. Frontend: EJS, HTML, CSS, Vanilla JS. Database: MongoDB Atlas. On mobile devices, the 3D model is not working properly.",
     href: "https://zavadil-motorsport.onrender.com",
   },
 ];
