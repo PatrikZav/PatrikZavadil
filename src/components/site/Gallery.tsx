@@ -4,6 +4,7 @@ import budgetApp from "@/assets/budget-app.png";
 import blogicBazar from "@/assets/blogic-bazar.png";
 import zavadilMotorsport from "@/assets/zavadil-motorsport.png";
 import redBullBlog from "@/assets/red-bull-blog.png";
+import autoShine from "@/assets/autoShine.png";
 
 const items = [
   { name: "YouTube — Pazaxcz", img: youtubeThumb, href: "https://www.youtube.com/@Pazaxcz" },
@@ -12,6 +13,7 @@ const items = [
   { name: "Red Bull Blog", img: redBullBlog, href: "https://i23zavapa.turney.cz" },
   { name: "Blogic Bazar", img: blogicBazar, href: "https://patrikzav.github.io/blum-bazar/" },
   { name: "Zavadil Motorsport", img: zavadilMotorsport, href: "https://zavadil-motorsport.onrender.com" },
+  { name: "Auto Shine Detailing", img: autoShine, href: "https://patrikzav.github.io/AutoshineDetailing/" },
 ];
 
 export function Gallery() {

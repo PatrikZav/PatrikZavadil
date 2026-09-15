@@ -55,6 +55,12 @@ const projects = [
     desc: "Solo school project — a premium car rental app featuring interactive 3D models (Three.js) and a custom reservation modal. Backend: Node.js, Express.js, Mongoose. Frontend: EJS, HTML, CSS, Vanilla JS. Database: MongoDB Atlas. On mobile devices, the 3D model is not working properly.",
     href: "https://zavadil-motorsport.onrender.com",
   },
+  {
+    name: "Auto Shine Detailing",
+    year: "2026",
+    desc: "Solo project built with TypeScript and JavaScript and React that I created just as a template, because I wanted to try some 3D animated website. ",
+    href: "https://patrikzav.github.io/AutoshineDetailing/",
+  },
 ];
 
 export function Projects() {
